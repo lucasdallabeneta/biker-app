@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 
-//import AsyncStorage from '@react-native-community/async-storage';
 import React, { Component } from 'react';
 import {
   View,
@@ -9,20 +8,21 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
-import Estilos from '../Estilos';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import { Image } from 'react-native-elements';
-import imagem from '../imgs/computer.png'
+import { Image, ListItem } from 'react-native-elements';
+import Estilos from '../Estilos';
 
 export default class Main extends Component {
   // static navigationOptions = {
   //   title: 'Parceiros',
   // };
-
-  state = {
-    dadosParceiros: [],
-    loading: false,
+  constructor() {
+    super();
+    this.state = {
+      logosParceiros: [],
+    };
   }
+
 
   // static navigationOptions = ({ navigation }) => {
     // static navigationOptions = props => {
@@ -37,29 +37,32 @@ export default class Main extends Component {
     this.requestParceiros();
   }
 
-  renderParceiro = ({ parceiro }) => {
-    return (
-      <View>
-        <Image
-          source={parceiro.picture}
-          style={{ width: 200, height: 200 }}
-          PlaceholderContent={<ActivityIndicator/>}
-        />
-      </View>
-    )
-  }
+  // requestParceiros = () => {
+  //   const url = `https://jsonplaceholder.typicode.com/photos`;
+  //   return fetch(url)
+  //     .then( (res) => res.json() )
+  //       .then( (resJson) => {
+  //         this.setState({
+  //           logosParceiros: resJson,
+  //         });
+  //         console.log('logosparceiros=',this.state.logosParceiros)
+  //         console.log('logosparceiros1=',this.state.logosParceiros[1])
+  //       }).catch((error) => { console.log(error); });
+  // }
 
-  requestParceiros = () => {
-    const num_results = 20
-    const url = `https://randomuser.me/api/?results=${num_results}`;
-    return fetch(url)
-      .then( (res) => res.json() )
-        .then( (resJson) => {
-          this.setState({
-            dadosParceiros: resJson.results,
-          });
-          console.log(this.state.dadosParceiros)
-        }).catch((error) => { console.log(error)});
+  requestParceiros = async () => {
+    const url = `https://jsonplaceholder.typicode.com/photos`;
+    try {
+      const response = await fetch(url);
+      const responseJson = await response.json();
+      this.setState({
+        logosParceiros: responseJson,
+      });
+      console.log('logosparceiros=', this.state.logosParceiros);
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   renderSeparator = () => {
@@ -89,11 +92,17 @@ export default class Main extends Component {
           </View>
 
         </ScrollView> */}
-
+        <Text>Lista:</Text>
         <FlatList
-          data={this.state.dadosParceiros}
-          renderItem={this.renderParceiro}
+          data={this.state.logosParceiros}
           keyExtractor={(parceiro, index) => index.toString()}
+          renderItem={({parceiro}) => {
+            <Image
+            source={{ uri: parceiro.thumbnailUrl }}
+            style={{ width: 200, height: 200 }}
+            PlaceholderContent={<ActivityIndicator/>}
+          />
+          }}
           ItemSeparatorComponent={this.renderSeparator}
         />
       </View>

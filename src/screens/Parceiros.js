@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Estilos from '../Estilos';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import { Image } from 'react-native-elements';
 import imagem from '../imgs/computer.png'
 
@@ -17,6 +17,10 @@ export default class Main extends Component {
   // static navigationOptions = {
   //   title: 'Parceiros',
   // };
+
+  state = {
+    dadosParceiros: '',
+  }
 
   // static navigationOptions = ({ navigation }) => {
     // static navigationOptions = props => {
@@ -27,10 +31,45 @@ export default class Main extends Component {
     //   };
     // };
 
+  componentDidMount() {
+    this.requestParceiros();
+  }
+
+  renderParceiro = ({parceiro}) => {
+    return (
+      <View>
+        <Image
+          source={parceiro.picture}
+          style={{ width: 200, height: 200 }}
+          PlaceholderContent={<ActivityIndicator/>}
+        />
+      </View>
+    )
+  }
+
+  requestParceiros = () => {
+    const num_results = 20
+    const url = `https://randomuser.me/api/?results=${num_results}`;
+
+    return fetch(url)
+      .then( (res) => res.json() )
+        .then( (resJson) => {
+          this.setState({
+            dadosParceiros: resJson,
+          });
+        }).catch((error) => { console.log(error)});
+  }
+
+  renderSeparator = () => {
+    return (
+      <View style={{ height:1, width:'100%', backgroundColor: '#119'}}/>
+    );
+  }
+
   render() {
     return (
       <View style={{ flex:1 }}>
-        <ScrollView>
+        {/* <ScrollView>
 
           <View style={Estilos.blocoParceiro}>
             <Text style={Estilos.blocoParceiroTitulo}>Novidades</Text>
@@ -47,7 +86,14 @@ export default class Main extends Component {
             </ScrollView>
           </View>
 
-        </ScrollView>
+        </ScrollView> */}
+
+        <FlatList
+          data={this.state.dadosParceiros}
+          renderItem={this.renderParceiro}
+          keyExtractor={(parceiro, index) => index}
+          ItemSeparatorComponent={this.renderSeparator}
+        />
       </View>
     );
   }

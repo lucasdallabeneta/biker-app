@@ -7,14 +7,11 @@ import {
 } from 'react-native';
 
 export default class Main extends Component {
-  // static navigationOptions = {
-  //   title: 'Parceiro',
-  // };
 
   static navigationOptions = props => {
     const { navigation } = props;
     return {
-      headerTitle: `Usuário: ${navigation.getParam('nomeTeste', 'ERROR')}`,
+      headerTitle: `${navigation.getParam('nomeParceiro', 'ERROR')}`,
       //headerRight: (<Button title='Purple' onPress={() => navigation.navigate('TelaAgenda')}/>)
     };
   };

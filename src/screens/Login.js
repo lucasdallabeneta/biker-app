@@ -1,13 +1,9 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react';
 import {
   View,
-  //SafeAreaView,
   Text,
-  //Image,
-  //Button,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -18,8 +14,6 @@ import {
 } from 'react-native';
 import { CheckBox, Image } from 'react-native-elements';
 import Estilos from '../Estilos';
-//import api from '../services/api';
-//import AsyncStorage from '@react-native-community/async-storage';
 import logo from '../imgs/logo.png';
 
 export default class Login extends Component {
@@ -33,19 +27,12 @@ export default class Login extends Component {
     };
   }
 
-  // lembrar como faz toggle:
-  // toggleContacts = () => {
-  //   this.setState(prevState => ({ showContacts: !prevState.showContacts }));
-  // };
-
-
   checkLogin = () => {
     const { cpf, password } = this.state;
 
     if (cpf === '' && password === '') {
       this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
     } else {
-      // criar um alerta dizendo que a senha ou usuario esta incorreto
       Alert.alert('senha ou login incorreto','tente novamente');
     }
   }

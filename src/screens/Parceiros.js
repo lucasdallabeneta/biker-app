@@ -33,10 +33,10 @@ export default class Main extends Component {
         <ScrollView>
 
           <View style={Estilos.blocoParceiro}>
-            <Text style={Estilos.botaoTexto}>Novidades</Text>
+            <Text style={Estilos.blocoParceiroTitulo}>Novidades</Text>
             <ScrollView horizontal={true}>
               <View style={Estilos.blocoParceiro2}>
-                <TouchableOpacity style={{ flex: 1}} onPress={ ()=>{ this.props.navigation.navigate('TelaParceiro', { nomeTeste : 'lucas'}); } }>
+                <TouchableOpacity style={{ flex: 1 }} onPress={ ()=>{ this.props.navigation.navigate('TelaParceiro', { nomeParceiro : 'Decathlon'}); } }>
                   <Image
                     source={ imagem }
                     style={{ height: 100, width: 100 }}

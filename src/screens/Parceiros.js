@@ -4,22 +4,13 @@
 import React, { Component } from 'react';
 import {
   View,
-  SafeAreaView,
   Text,
-  Dimensions,
-  //Image,
-  Button,
-  TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
 import Estilos from '../Estilos';
 import { ScrollView } from 'react-native-gesture-handler';
-import { CheckBox, Image } from 'react-native-elements';
-//import api from '../services/api';
+import { Image } from 'react-native-elements';
 import imagem from '../imgs/computer.png'
 
 export default class Main extends Component {

@@ -1,28 +1,11 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-//import AsyncStorage from '@react-native-community/async-storage';
 
 import React from 'react';
 import {
   View,
-  SafeAreaView,
   Text,
-  Image,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
 } from 'react-native';
-//import api from '../services/api';
 import Estilos from '../Estilos';
-// import imagem1 from '../imgs/computer.png';
-// import imagem2 from '../imgs/emoji.png';
-// import imagem3 from '../imgs/family.png';
-// import imagem4 from '../imgs/horse.png';
-// import imagem5 from '../imgs/people.png';
-// import imagem6 from '../imgs/taco.png';
 
 export default class Main extends React.Component {
 

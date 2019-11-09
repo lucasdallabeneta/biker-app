@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import Estilos from '../Estilos';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
@@ -19,7 +20,8 @@ export default class Main extends Component {
   // };
 
   state = {
-    dadosParceiros: '',
+    dadosParceiros: [],
+    loading: false,
   }
 
   // static navigationOptions = ({ navigation }) => {
@@ -35,7 +37,7 @@ export default class Main extends Component {
     this.requestParceiros();
   }
 
-  renderParceiro = ({parceiro}) => {
+  renderParceiro = ({ parceiro }) => {
     return (
       <View>
         <Image
@@ -50,13 +52,13 @@ export default class Main extends Component {
   requestParceiros = () => {
     const num_results = 20
     const url = `https://randomuser.me/api/?results=${num_results}`;
-
     return fetch(url)
       .then( (res) => res.json() )
         .then( (resJson) => {
           this.setState({
-            dadosParceiros: resJson,
+            dadosParceiros: resJson.results,
           });
+          console.log(this.state.dadosParceiros)
         }).catch((error) => { console.log(error)});
   }
 
@@ -91,7 +93,7 @@ export default class Main extends Component {
         <FlatList
           data={this.state.dadosParceiros}
           renderItem={this.renderParceiro}
-          keyExtractor={(parceiro, index) => index}
+          keyExtractor={(parceiro, index) => index.toString()}
           ItemSeparatorComponent={this.renderSeparator}
         />
       </View>

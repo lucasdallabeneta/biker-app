@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -14,9 +14,10 @@ import {
 } from 'react-native';
 import { CheckBox, Image } from 'react-native-elements';
 import Estilos from '../Estilos';
-import logo from '../imgs/logo.png';
+import logo from '../imgs/logo.jpeg';
+import axios from 'axios';
 
-export default class Login extends Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,15 +28,39 @@ export default class Login extends Component {
     };
   }
 
-  checkLogin = () => {
-    const { cpf, password } = this.state;
-
-    if (cpf === '' && password === '') {
-      this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
+  handleLogin = async () => {
+    if (this.state.cpf.length === 0 || this.state.password.length === 0) {
+      Alert.alert('senha ou login incompletos','tente novamente');
     } else {
-      Alert.alert('senha ou login incorreto','tente novamente');
+      try {
+        const response = await axios.post(`http://192.168.0.7:3333/users/signin`, {
+          cpf: this.state.cpf,
+          password: this.state.password,
+        });
+        Alert.alert('resposta do servidor:',`
+          cpf=${response.data.cpf}
+          name=${response.data.name}
+          token=${response.data.token}
+        `);
+         
+        axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`
+          
+        // const { cpf, token } = response.data;
+        // Alert(''+cpf,''+token)
+        //await AsyncStorage.setItem('@BikerApp:token', token);
+        // await AsyncStorage.multiSet([
+        //   ['@auth:token', token],
+        //   ['@auth:user', JSON.stringify(user)]
+        // ]);
+
+        this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
+
+      } catch (_err) {
+        Alert.alert('erro mane',''+_err);
+        //this.setState({ error: 'Houve um problema com o login, verifique suas credenciais!' });
+      }
     }
-  }
+  };
 
   render() {
     return (
@@ -49,7 +74,7 @@ export default class Login extends Component {
         <View style={{ flexDirection:'row'}}>
           <Image
             source={ logo }
-            style={{ width: 200, height: 200 }}
+            style={{ width: 300, height: 100, resizeMode: 'contain', }}
             PlaceholderContent={<ActivityIndicator/>}
           />
         </View>
@@ -93,7 +118,7 @@ export default class Login extends Component {
             <Text style={Estilos.botaoTexto}>esqueci a senha</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.checkLogin(); } }>
+          <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.handleLogin(); } }>
             <Text style={Estilos.botaoTexto}>login</Text>
           </TouchableOpacity>
         </View>

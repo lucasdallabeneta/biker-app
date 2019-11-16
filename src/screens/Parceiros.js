@@ -16,6 +16,13 @@ export default class Main extends Component {
   // static navigationOptions = {
   //   title: 'Parceiros',
   // };
+  static navigationOptions = {
+    title: 'Inicio',
+    drawerIcon: ({ focused }) => (
+        <Icon name="home" size={24} color={focused ? colors.primary : 'black'} />
+    ), 
+  };
+  
   constructor() {
     super();
     this.state = {

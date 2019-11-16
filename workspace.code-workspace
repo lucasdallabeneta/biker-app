@@ -3,6 +3,9 @@
 		{
 			"name": "bikerappteste",
 			"path": "."
+		},
+		{
+			"path": "/Users/lucas/UDESC/biker-app-backend"
 		}
 	],
 	"settings": {}

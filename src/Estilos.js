@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 
+  // to usando
   botao: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -109,6 +110,30 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingHorizontal: 10,
     //marginHorizontal: 100,
+  },
+  // to usando
+  PerfilBotaoTexto: {
+    alignSelf: 'stretch',
+    //backgroundColor: '#fff',
+    paddingHorizontal: 30,
+    fontWeight: 'bold',
+  },
+
+  // to usando
+  PerfilBotao: {
+    justifyContent: 'center',
+    //alignItems: 'center',
+    alignSelf: 'center',
+    height: 50,
+    //width: 200,
+    alignSelf: 'stretch',
+    backgroundColor: '#fff',
+    borderRadius: 50,
+    //marginTop: 10,
+    marginHorizontal: 50,
+    //paddingHorizontal: 10,
+    //marginHorizontal: 100,
+    fontWeight: 'bold',
   },
 
   botaoTexto: {

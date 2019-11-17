@@ -11,6 +11,7 @@ import {
   Alert,
   StatusBar,
   ActivityIndicator,
+  AsyncStorage,
 } from 'react-native';
 import { CheckBox, Image } from 'react-native-elements';
 import Estilos from '../Estilos';
@@ -24,9 +25,24 @@ export default class Login extends React.Component {
     this.state = {
       cpf: '',
       password: '',
-      checked: false,
+      lembrarSenha: false,
     };
   }
+
+  componentDidMount() {
+    this._retrieveData()
+  }
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@auth:lembrarSenha');
+      if (value == 'true') {
+        this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
+      }
+    } catch (error) {
+      Alert.alert('no data bruh')
+    }
+  };
 
   handleLogin = async () => {
     if (this.state.cpf.length === 0 || this.state.password.length === 0) {
@@ -37,21 +53,22 @@ export default class Login extends React.Component {
           cpf: this.state.cpf,
           password: this.state.password,
         });
-        Alert.alert('resposta do servidor:',`
-          cpf=${response.data.cpf}
-          name=${response.data.name}
-          token=${response.data.token}
-        `);
-         
-        axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`
+       
+        Alert.alert('resposta do servidor:',`cpf=${response.data.cpf} name=${response.data.name} token=${response.data.token}`);
+        
+        const { cpf, name, token } = response.data; 
+
+        axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
           
-        // const { cpf, token } = response.data;
-        // Alert(''+cpf,''+token)
-        //await AsyncStorage.setItem('@BikerApp:token', token);
-        // await AsyncStorage.multiSet([
-        //   ['@auth:token', token],
-        //   ['@auth:user', JSON.stringify(user)]
-        // ]);
+        await AsyncStorage.multiSet([
+          ['@auth:token', token],
+          ['@auth:name', name],
+          ['@auth:cpf', cpf],
+        ]);
+
+        if( this.state.lembrarSenha == true ) {
+          await AsyncStorage.setItem('@auth:lembrarSenha', 'true'); 
+        }
 
         this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
 
@@ -104,12 +121,12 @@ export default class Login extends React.Component {
             iconRight
             center
             iconType="material"
-            checkedIcon="add"
-            uncheckedIcon="add"
-            checkedColor="gray"
-            uncheckedColor="gray"
-            checked={this.state.checked}
-            onPress={() => this.setState({checked: !this.state.checked})}
+            checkedIcon="clear"
+            uncheckedIcon="clear"
+            checkedColor="green"
+            uncheckedColor="red"
+            checked={this.state.lembrarSenha}
+            onPress={() => this.setState({lembrarSenha: !this.state.lembrarSenha})}
           />
         </View>
 

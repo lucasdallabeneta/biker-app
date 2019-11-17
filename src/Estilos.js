@@ -5,7 +5,7 @@ import { Platform, StyleSheet, Dimensions } from 'react-native';
 const styles = StyleSheet.create({
   containerLogin: {
     flex: 1,
-    backgroundColor: '#7df',
+    backgroundColor: '#bcf',
     justifyContent: 'space-around', // vertical
     alignItems: 'center', // horizontal
   },
@@ -84,16 +84,17 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
+  // tela de perfil
   caixaInput: {
     height: 40,
     width: 300,
     backgroundColor: '#fff',
     //alignSelf: 'stretch',
-    // borderWidth: 2,
-    // borderColor: '#fff',
-    // borderRadius: 5,
-    padding: 10,
+    // borderWidth: 4,
+    // borderColor: '#aaf',
+    //borderRadius: 5,
     //marginHorizontal: 0,
+    padding: 10,
     marginVertical: 5,
   },
 
@@ -102,11 +103,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
-    width: 150,
+    width: 140,
     alignSelf: 'stretch',
     backgroundColor: '#fff',
-    borderRadius: 4,
-    marginTop: 10,
+    borderRadius: 0,
+    marginTop: 0,
     marginHorizontal: 10,
     paddingHorizontal: 10,
     //marginHorizontal: 100,
@@ -118,7 +119,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     fontWeight: 'bold',
   },
-
   // to usando
   PerfilBotao: {
     justifyContent: 'center',
@@ -138,59 +138,10 @@ const styles = StyleSheet.create({
 
   botaoTexto: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 'bold',
+    //fontStyle: 'italic'
   },
-
-  logoPequeno: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain'
-  },
-
-  textoNome: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    padding: 5,
-    color: 'black',
-  },
-
-  textoBio: {
-    padding: 10,
-    color: 'grey',
-  },
-
-  foto: {
-    flex: 1,
-    height: 500,
-    //overflow: 'hidden',
-    //resizeMode: 'contain'
-  },
-
-  botoesLikeDislike: {
-    flexDirection: 'row',
-    marginBottom: 25,
-  },
-
-  botaozinho:{
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 20,
-    elevation: 2,
-    shadowOpacity: 0.05,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    }
-  },
-
-  botaozinhoTexto: {
-    color: 'black'
-  }
 
 });
 

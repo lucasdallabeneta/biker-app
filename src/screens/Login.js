@@ -13,7 +13,7 @@ import {
   ActivityIndicator,
   AsyncStorage,
 } from 'react-native';
-import { CheckBox, Image } from 'react-native-elements';
+import { CheckBox, Image, Icon } from 'react-native-elements';
 import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
@@ -36,7 +36,7 @@ export default class Login extends React.Component {
   _retrieveData = async () => {
     try {
       const value = await AsyncStorage.getItem('@auth:lembrarSenha');
-      if (value == 'true') {
+      if (value == 'sim') {
         this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
       }
     } catch (error) {
@@ -46,18 +46,15 @@ export default class Login extends React.Component {
 
   handleLogin = async () => {
     if (this.state.cpf.length === 0 || this.state.password.length === 0) {
-      Alert.alert('senha ou login incompletos','tente novamente');
+      Alert.alert('CPF ou senha incompletos','Insira seus dados corretamente');
     } else {
       try {
         const response = await axios.post(`http://192.168.0.7:3333/users/signin`, {
           cpf: this.state.cpf,
           password: this.state.password,
         });
-       
-        Alert.alert('resposta do servidor:',`cpf=${response.data.cpf} name=${response.data.name} token=${response.data.token}`);
-        
+        //Alert.alert('Resposta do servidor:',`cpf=${response.data.cpf} name=${response.data.name} token=${response.data.token}`);
         const { cpf, name, token } = response.data; 
-
         axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
           
         await AsyncStorage.multiSet([
@@ -67,14 +64,13 @@ export default class Login extends React.Component {
         ]);
 
         if( this.state.lembrarSenha == true ) {
-          await AsyncStorage.setItem('@auth:lembrarSenha', 'true'); 
+          await AsyncStorage.setItem('@auth:lembrarSenha', 'sim'); 
         }
 
-        this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
+        this.props.navigation.navigate('TelaMain');
 
-      } catch (_err) {
-        Alert.alert('erro mane',''+_err);
-        //this.setState({ error: 'Houve um problema com o login, verifique suas credenciais!' });
+      } catch (err) {
+        Alert.alert('[log]',''+err);
       }
     }
   };
@@ -100,8 +96,8 @@ export default class Login extends React.Component {
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="cpf"
-            placeholderTextColor="#000"
+            placeholder="CPF"
+            placeholderTextColor="#aaa"
             style={Estilos.caixaInput}
             //value={this.value.cpf}
             onChangeText={cpf => this.setState({ cpf })}
@@ -110,21 +106,18 @@ export default class Login extends React.Component {
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry={true}
-            placeholder="senha"
-            placeholderTextColor="#000"
+						placeholder="Senha"
+            placeholderTextColor="#aaa"
             onChangeText={password => this.setState({ password })}
             style={Estilos.caixaInput}
           />
           <CheckBox
-            containerStyle={{ width: 160, alignSelf: 'flex-end'}}
-            title="lembrar senha"
+            containerStyle={[Estilos.botao, {alignSelf: 'flex-end'}]}
+            title={<Text style={Estilos.botaoTexto}>Lembrar a senha</Text>}
             iconRight
             center
-            iconType="material"
-            checkedIcon="clear"
-            uncheckedIcon="clear"
-            checkedColor="green"
-            uncheckedColor="red"
+            checkedIcon={<Icon name="add" type='material' color="#0f0" />}
+            uncheckedIcon={<Icon name="add" type='material' color="#f00" />}
             checked={this.state.lembrarSenha}
             onPress={() => this.setState({lembrarSenha: !this.state.lembrarSenha})}
           />
@@ -132,11 +125,11 @@ export default class Login extends React.Component {
 
         <View style={{ flexDirection:'row' }}>
           <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.props.navigation.navigate('TelaRecuperarSenha'); } }>
-            <Text style={Estilos.botaoTexto}>esqueci a senha</Text>
+            <Text style={Estilos.botaoTexto}>Esqueci a senha</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.handleLogin(); } }>
-            <Text style={Estilos.botaoTexto}>login</Text>
+            <Text style={Estilos.botaoTexto}>Login</Text>
           </TouchableOpacity>
         </View>
 

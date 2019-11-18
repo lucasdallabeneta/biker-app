@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import React, { Component } from 'react';
 import {
   View,
@@ -11,6 +10,9 @@ import {
 } from 'react-native';
 import Estilos from '../Estilos';
 import axios from 'axios';
+
+//const servidor = 'http://192.168.0.7:3333'
+const servidor = 'http://192.168.0.7:3333'
 
 export default class Main extends Component {
   // static navigationOptions = {
@@ -32,7 +34,7 @@ export default class Main extends Component {
       Alert.alert('erro!','Insira sua nova senha');
     } else {
       try {
-        const response = await axios.post(`http://192.168.0.7:3333/users/changepass`, {
+        const response = await axios.post(`${servidor}/users/changepass`, {
           cpf: this.state.cpf,
           password: this.state.password,
         });

@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import React from 'react';
 import {
   View,
@@ -18,7 +17,7 @@ import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
 
-const servidor = "http://192.168.0.7:3333";
+const servidor = "http://192.168.43.111:3333";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -82,7 +81,7 @@ export default class Login extends React.Component {
       <KeyboardAvoidingView
       behavior="padding"
       enabled={Platform.OS === 'ios'}
-      style={Estilos.containerLogin}
+      style={Estilos.LoginContainer}
       >
         <StatusBar barStyle="light-content"/>
 
@@ -100,7 +99,7 @@ export default class Login extends React.Component {
             autoCorrect={false}
             placeholder="CPF"
             placeholderTextColor="#aaa"
-            style={Estilos.caixaInput}
+            style={Estilos.LoginCaixaInput}
             //value={this.value.cpf}
             onChangeText={cpf => this.setState({ cpf })}
           />
@@ -111,11 +110,11 @@ export default class Login extends React.Component {
 						placeholder="Senha"
             placeholderTextColor="#aaa"
             onChangeText={password => this.setState({ password })}
-            style={Estilos.caixaInput}
+            style={Estilos.LoginCaixaInput}
           />
           <CheckBox
-            containerStyle={[Estilos.botao, {alignSelf: 'flex-end'}]}
-            title={<Text style={Estilos.botaoTexto}>Lembrar a senha</Text>}
+            containerStyle={[Estilos.LoginBotao, {alignSelf: 'flex-end'}]}
+            title={<Text style={Estilos.LoginBotaoTexto}>Lembrar a senha</Text>}
             iconRight
             center
             checkedIcon={<Icon name="add" type='material' color="#0f0" />}
@@ -126,12 +125,12 @@ export default class Login extends React.Component {
         </View>
 
         <View style={{ flexDirection:'row' }}>
-          <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.props.navigation.navigate('TelaRecuperarSenha'); } }>
-            <Text style={Estilos.botaoTexto}>Esqueci a senha</Text>
+          <TouchableOpacity style={Estilos.LoginBotao} onPress={ ()=>{ this.props.navigation.navigate('TelaRecuperarSenha'); } }>
+            <Text style={Estilos.LoginBotaoTexto}>Esqueci a senha</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={Estilos.botao} onPress={ ()=>{ this.handleLogin(); } }>
-            <Text style={Estilos.botaoTexto}>Login</Text>
+          <TouchableOpacity style={Estilos.LoginBotao} onPress={ ()=>{ this.handleLogin(); } }>
+            <Text style={Estilos.LoginBotaoTexto}>Login</Text>
           </TouchableOpacity>
         </View>
 

@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-
 import React from 'react';
 import {
   View,
@@ -30,9 +29,9 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <View style={{ flex:1, margin: 5, backgroundColor: '#f72'}}>
+      <View style={{ flex:1, margin: 5 }}>
 
-        <View style={{ margin: 5, height: 120, borderColor: 'black', borderWidth: 2, backgroundColor: '#fff', flexDirection: 'row'}}>
+        <View style={Estilos.PerfilContainerInfo}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}> 
             <Image 
               source={require('../imgs/horse.png')}
@@ -40,14 +39,14 @@ export default class Main extends React.Component {
             />
           </View>
           <View style={{flex: 2, justifyContent: 'center'}}> 
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>  bem vindo {this.state.nome} </Text>
-            <Text style={{ fontSize: 20 }}>  funcionario da bikerapp </Text>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFF' }}>  bem vindo {this.state.nome} </Text>
+            <Text style={{ fontSize: 20, color: '#FFF' }}>  funcionario da bikerapp </Text>
           </View>
         </View>
 
-        <View style={{  margin: 5, height: 120, borderColor: 'black', borderWidth: 2, backgroundColor: '#fff',flexDirection: 'row'}}>
+        <View style={Estilos.PerfilContainerCreditos}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}> 
-            <Text style={{ fontSize: 20 }}>  creditos diponiveis: 1203 </Text>
+            <Text style={{ fontSize: 20, color: '#FFF' }}>  creditos diponiveis: -1 </Text>
           </View>
         </View>
 
@@ -77,7 +76,11 @@ export default class Main extends React.Component {
             <Text style={Estilos.PerfilBotaoTexto}>Sobre</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={Estilos.PerfilBotao} onPress={ () => AsyncStorage.clear() }>
+          <TouchableOpacity style={Estilos.PerfilBotao} 
+          onPress={ () => {
+            AsyncStorage.clear();
+            this.props.navigation.navigate('TelaLogin');
+          }}>
             <Text style={Estilos.PerfilBotaoTexto}>Sair</Text>
           </TouchableOpacity>
 

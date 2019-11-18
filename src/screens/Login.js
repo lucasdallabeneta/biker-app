@@ -18,6 +18,8 @@ import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
 
+const servidor = "http://192.168.0.7:3333";
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,7 @@ export default class Login extends React.Component {
       Alert.alert('CPF ou senha incompletos','Insira seus dados corretamente');
     } else {
       try {
-        const response = await axios.post(`http://192.168.0.7:3333/users/signin`, {
+        const response = await axios.post(`${servidor}/users/signin`, {
           cpf: this.state.cpf,
           password: this.state.password,
         });

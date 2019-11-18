@@ -1,3 +1,5 @@
+*.code-workspace
+
 # OSX
 #
 .DS_Store

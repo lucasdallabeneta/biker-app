@@ -17,7 +17,7 @@ import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
 
-const servidor = "http://192.168.43.111:3333";
+const servidor = "http://192.168.0.11:3333";
 
 export default class Login extends React.Component {
   constructor(props) {

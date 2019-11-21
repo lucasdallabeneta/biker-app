@@ -5,52 +5,69 @@ import {
   createSwitchNavigator,
   createBottomTabNavigator,
 } from 'react-navigation';
+import Platform from 'react-native';
 
 import Login from './src/screens/Login';
-import Profile from './src/screens/Profile';
 import RecuperarSenha from './src/screens/RecuperarSenha';
+
 import Parceiros from './src/screens/Parceiros';
-import Atividades from './src/screens/Atividades';
 import Parceiro from './src/screens/Parceiro';
+
+import Atividades from './src/screens/Atividades';
+
+import Profile from './src/screens/Profile';
+import Sobre from './src/screens/Sobre';
+import Feedback from './src/screens/Feedback';
+import Ajuda from './src/screens/Ajuda';
+import AppConfig from './src/screens/AppConfig';
+import EditProfile from './src/screens/EditProfile';
+import MeusCuponsDescontos from './src/screens/MeusCuponsDescontos';
 
 
 const AtividadesNavigator = createStackNavigator({
-  TelaMain : {
-    screen : Atividades,
-    navigationOptions: {
-      headerTitle: 'Tela de atividades',
-  }},
+  TelaMain : { screen : Atividades},
 });
 
 const ParceirosNavigator = createStackNavigator({
-  TelaMain : {
-    screen : Parceiros,
-    navigationOptions: {
-      headerTitle: 'Tela de parceiros',
-  }},
-  TelaParceiro : {
-    screen : Parceiro,
-    navigationOptions: {
-      //headerTitle: 'Tela de parceiro',
-  }},
+  TelaMain : { screen : Parceiros },
+  TelaParceiro : { screen : Parceiro },
 });
 
 const ProfileNavigator = createStackNavigator({
-  TelaMain : {
-    screen : Profile,
-    navigationOptions: {
-      headerTitle: 'Tela de perfil',
-  }}
+  TelaMain : { screen : Profile },
+  TelaSobre : { screen : Sobre },
+  TelaAjuda : { screen : Ajuda },
+  TelaFeedback : { screen : Feedback},
+  TelaAppConfig : { screen : AppConfig},
+  TelaEditProfile : { screen : EditProfile},
+  TelaMeusCuponsDescontos : { screen : MeusCuponsDescontos},
 });
 
 const MyTabNavigator = createBottomTabNavigator({
   Perfil : ProfileNavigator,
   Parceiros : ParceirosNavigator,
   Atividades : AtividadesNavigator,
+},{
+  headerMode: 'none',
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: '#f99',
+    inactiveTintColor: '#b5b5b5',
+    showIcon: 'true',
+    //showLabel: (Platform.OS !== 'android'), 
+    labelStyle: {
+      fontSize: 10,
+    },
+    style: {
+      backgroundColor: '#fff',
+      paddingBottom: 5,
+      //height: 40
+    }
+  }
 });
 
 const MySwitchNavigator = createSwitchNavigator({
-    TelaLogin: { screen : Login }, // da pra escrever assim e no metodo abaixo tambem
+    TelaLogin: { screen : Login },
     TelaMain : MyTabNavigator,
     TelaRecuperarSenha: RecuperarSenha,
   },{
@@ -58,17 +75,4 @@ const MySwitchNavigator = createSwitchNavigator({
 });
 
 export default createAppContainer(MySwitchNavigator);
-
-// era pra ser igual o de cima
-// export default createAppContainer(
-//   createSwitchNavigator(
-//     {
-//       TelaLogin: Login,
-//       TelaMain: MainStack,
-//       TelaAgenda: Agenda,
-//     },{
-//       initialRouteName: 'TelaLogin',
-//     }
-//   ),
-// );
 

@@ -30,17 +30,17 @@ export default class Login extends React.Component {
   }
 
   componentDidMount() {
-    this._retrieveData()
+    this.isLoggedIn()
   }
 
-  _retrieveData = async () => {
+  isLoggedIn = async () => {
     try {
       const value = await AsyncStorage.getItem('@auth:lembrarSenha');
-      if (value == 'sim') {
-        this.props.navigation.navigate('TelaMain', { nomeTeste : 'lucas'});
+      if (value == '1') {
+        this.props.navigation.navigate('TelaMain');
       }
     } catch (error) {
-      Alert.alert('no data bruh')
+      Alert.alert(error)
     }
   };
 
@@ -64,7 +64,7 @@ export default class Login extends React.Component {
         ]);
 
         if( this.state.lembrarSenha == true ) {
-          await AsyncStorage.setItem('@auth:lembrarSenha', 'sim'); 
+          await AsyncStorage.setItem('@auth:lembrarSenha', '1'); 
         }
 
         this.props.navigation.navigate('TelaMain');
@@ -82,12 +82,12 @@ export default class Login extends React.Component {
       enabled={Platform.OS === 'ios'}
       style={Estilos.LoginContainer}
       >
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle="dark-content" backgroundColor='#fff'/> 
 
         <View style={{ flexDirection:'row'}}>
           <Image
             source={ logo }
-            style={{ width: 300, height: 100, resizeMode: 'contain', }}
+            style={{ width: 400, height: 100, resizeMode: 'cover' }}
             PlaceholderContent={<ActivityIndicator/>}
           />
         </View>

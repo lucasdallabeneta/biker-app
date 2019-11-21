@@ -8,7 +8,7 @@ import {
 const styles = StyleSheet.create({
   LoginContainer: {
     flex: 1,
-    backgroundColor: '#bcf',
+    backgroundColor: '#fff',
     justifyContent: 'space-around', // vertical
     alignItems: 'center', // horizontal
   },
@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: '#fff',
     //alignSelf: 'stretch',
-    // borderWidth: 4,
-    // borderColor: '#aaf',
-    //borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 100,
     //marginHorizontal: 0,
     padding: 10,
+    paddingHorizontal: 25,
     marginVertical: 5,
   },
   LoginBotao: {
@@ -30,7 +31,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 140,
     alignSelf: 'stretch',
-    backgroundColor: '#fff',
+    backgroundColor: '#f99',
+    borderWidth: 1,
+    borderColor: '#ccc',
     borderRadius: 100,
     marginTop: 0,
     marginHorizontal: 10,
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   PerfilBotao: {
-    backgroundColor: '#f92',
+    backgroundColor: '#f99',
     justifyContent: 'center',
     //alignItems: 'center',
     alignSelf: 'center',
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
     borderColor: 'black', 
     //borderWidth: 2, 
     borderRadius: 100,
-    backgroundColor: '#f92',
+    backgroundColor: '#f99',
     flexDirection: 'row'
   },
   PerfilContainerInfo: {
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     height: 120, 
     borderColor: 'black', 
     //borderWidth: 2, 
-    backgroundColor: '#f92', 
+    backgroundColor: '#f99', 
     borderRadius: 100,
     flexDirection: 'row'
   }

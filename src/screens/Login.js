@@ -16,8 +16,7 @@ import { CheckBox, Image, Icon } from 'react-native-elements';
 import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
-
-const servidor = "http://192.168.43.111:3333";
+import api from '../api/api'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -50,7 +49,7 @@ export default class Login extends React.Component {
       Alert.alert('CPF ou senha incompletos','Insira seus dados corretamente');
     } else {
       try {
-        const response = await axios.post(`${servidor}/users/signin`, {
+        const response = await api.post('/users/signin', {
           cpf: this.state.cpf,
           password: this.state.password,
         });

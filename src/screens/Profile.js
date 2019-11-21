@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Image,
+  Alert
 } from 'react-native';
 import Estilos from '../Estilos';
 
@@ -76,11 +77,19 @@ export default class Main extends React.Component {
             <Text style={Estilos.PerfilBotaoTexto}>Sobre</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={Estilos.PerfilBotao} 
-          onPress={ () => {
-            AsyncStorage.clear();
-            this.props.navigation.navigate('TelaLogin');
-          }}>
+          <TouchableOpacity 
+            style={Estilos.PerfilBotao} 
+            onPress={ () => {
+              Alert.alert('Atenção', 'Tem certeza que deseja sair da conta?', [
+                {text: 'Sim', onPress: () => { 
+                  AsyncStorage.clear();
+                  this.props.navigation.navigate('TelaLogin');
+                }},{
+                  text: 'Não'
+                }
+              ])
+              
+            }}>
             <Text style={Estilos.PerfilBotaoTexto}>Sair</Text>
           </TouchableOpacity>
 

@@ -10,9 +10,7 @@ import {
 } from 'react-native';
 import Estilos from '../Estilos';
 import axios from 'axios';
-
-//const servidor = 'http://192.168.0.7:3333'
-const servidor = 'http://192.168.0.7:3333'
+import api from '../api/api';
 
 export default class Main extends Component {
   // static navigationOptions = {
@@ -34,7 +32,7 @@ export default class Main extends Component {
       Alert.alert('erro!','Insira sua nova senha');
     } else {
       try {
-        const response = await axios.post(`${servidor}/users/changepass`, {
+        const response = await api.post('/users/changepass', {
           cpf: this.state.cpf,
           password: this.state.password,
         });
@@ -56,7 +54,7 @@ export default class Main extends Component {
       Alert.alert('erro!','Insira seu CPF');
     } else {
       try {
-        const response = await axios.post(`http://192.168.0.7:3333/users/checkuser`, {
+        const response = await api.post('users/checkuser', {
           cpf: this.state.cpf,
         });
 
@@ -76,24 +74,24 @@ export default class Main extends Component {
   render() {
     const encontrado = this.state.usuarioEncontrado;
     return (
-      <View style={Estilos.containerLogin}>
+      <View style={Estilos.LoginContainer}>
         { encontrado ? 
           <View style={{ flexDirection:'column'}}>
-            <Text>Digite seu nova senha: </Text>
+            <Text style={Estilos.LoginBotaoTexto}>Digite seu nova senha: </Text>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="Senha"
               placeholderTextColor="#aaa"
-              style={Estilos.caixaInput}
+              style={Estilos.LoginCaixaInput}
               secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
             />
-            <TouchableOpacity style={Estilos.botao} onPress={ () => this.mudaSenha() }>
-                <Text style={Estilos.botaoTexto}>Enviar</Text>
+            <TouchableOpacity style={Estilos.LoginBotao} onPress={ () => this.mudaSenha() }>
+                <Text style={Estilos.LoginBotaoTexto}>Enviar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={Estilos.botao}>
-                <Text style={Estilos.botaoTexto}>Mostrar senha</Text>
+            <TouchableOpacity style={Estilos.LoginBotao}>
+                <Text style={Estilos.LoginBotaoTexto}>Mostrar senha</Text>
             </TouchableOpacity>
           </View>   
         :
@@ -104,11 +102,11 @@ export default class Main extends Component {
               autoCorrect={false}
               placeholder="CPF"
               placeholderTextColor="#aaa"
-              style={Estilos.caixaInput}
+              style={Estilos.LoginCaixaInput}
               onChangeText={cpf => this.setState({ cpf })}
             />
-            <TouchableOpacity style={Estilos.botao} onPress={ () => this.buscaUsuario() }>
-                <Text style={Estilos.botaoTexto}>Enviar</Text>
+            <TouchableOpacity style={Estilos.LoginBotao} onPress={ () => this.buscaUsuario() }>
+                <Text style={Estilos.LoginBotaoTexto}>Enviar</Text>
             </TouchableOpacity>
           </View>   
       }   

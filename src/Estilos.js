@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     marginVertical: 5,
   },
+  LoginLogo:{
+    width: 350, 
+    height: 100, 
+    resizeMode: 'cover'
+  },
   LoginBotao: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: '#f99',
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#f99',
     borderRadius: 100,
     marginTop: 0,
     marginHorizontal: 10,

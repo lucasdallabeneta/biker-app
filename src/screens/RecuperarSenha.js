@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  StatusBar
 } from 'react-native';
 import Estilos from '../Estilos';
 import axios from 'axios';
@@ -75,6 +76,7 @@ export default class Main extends Component {
     const encontrado = this.state.usuarioEncontrado;
     return (
       <View style={Estilos.LoginContainer}>
+        <StatusBar barStyle="dark-content" backgroundColor='#fff'/> 
         { encontrado ? 
           <View style={{ flexDirection:'column'}}>
             <Text style={Estilos.LoginBotaoTexto}>Digite seu nova senha: </Text>
@@ -96,7 +98,7 @@ export default class Main extends Component {
           </View>   
         :
           <View style={{ flexDirection:'column'}}>
-            <Text>Digite seu CPF</Text>
+            <Text style={Estilos.LoginBotaoTexto}>Digite seu CPF</Text>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}

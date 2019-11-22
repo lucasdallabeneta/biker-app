@@ -47,7 +47,7 @@ export default class Login extends React.Component {
   handleLogin = async () => {
     if (this.state.cpf.length === 0 || this.state.password.length === 0) {
       Alert.alert('CPF ou senha incompletos','Insira seus dados corretamente');
-    } else {
+    } else { 
       try {
         const response = await api.post('/users/signin', {
           cpf: this.state.cpf,
@@ -87,7 +87,7 @@ export default class Login extends React.Component {
         <View style={{ flexDirection:'row'}}>
           <Image
             source={ logo }
-            style={{ width: 400, height: 100, resizeMode: 'cover' }}
+            style={Estilos.LoginLogo}
             PlaceholderContent={<ActivityIndicator/>}
           />
         </View>

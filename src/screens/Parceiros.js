@@ -16,12 +16,20 @@ export default class Main extends Component {
   // static navigationOptions = {
   //   title: 'Parceiros',
   // };
-  static navigationOptions = {
-    title: 'Inicio',
-    drawerIcon: ({ focused }) => (
-        <Icon name="home" size={24} color={focused ? colors.primary : 'black'} />
-    ), 
-  };
+  // static navigationOptions = {
+  //   title: 'Inicio',
+  //   // drawerIcon: ({ focused }) => (
+  //   //     <Icon name="home" size={24} color={focused ? colors.primary : 'black'} />
+  //   // ), 
+  // };
+
+  // static navigationOptions = props => {
+  //   const { navigation } = props;
+  //     return {
+  //       headerTitle: `Usuário: ${navigation.getParam('nomeTeste', 'ERROR')}`,
+  //       //headerRight: (<Button title='Purple' onPress={() => navigation.navigate('TelaAgenda')}/>)
+  //     };
+  //   };
   
   constructor() {
     super();
@@ -30,53 +38,43 @@ export default class Main extends Component {
     };
   }
 
-
-  // static navigationOptions = ({ navigation }) => {
-    // static navigationOptions = props => {
-    //   const { navigation } = props;
-    //   return {
-    //     headerTitle: `Usuário: ${navigation.getParam('nomeTeste', 'ERROR')}`,
-    //     //headerRight: (<Button title='Purple' onPress={() => navigation.navigate('TelaAgenda')}/>)
-    //   };
-    // };
-
-  componentDidMount() {
-    this.requestParceiros();
-  }
-
-  // requestParceiros = () => {
-  //   const url = `https://jsonplaceholder.typicode.com/photos`;
-  //   return fetch(url)
-  //     .then( (res) => res.json() )
-  //       .then( (resJson) => {
-  //         this.setState({
-  //           logosParceiros: resJson,
-  //         });
-  //         console.log('logosparceiros=',this.state.logosParceiros)
-  //         console.log('logosparceiros1=',this.state.logosParceiros[1])
-  //       }).catch((error) => { console.log(error); });
+  // componentDidMount() {
+  //   this.requestParceiros();
   // }
 
-  requestParceiros = async () => {
-    const url = `https://jsonplaceholder.typicode.com/photos`;
-    try {
-      const response = await fetch(url);
-      const responseJson = await response.json();
-      this.setState({
-        logosParceiros: responseJson,
-      });
-      console.log('logosparceiros=', this.state.logosParceiros);
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
+  // // requestParceiros = () => {
+  // //   const url = `https://jsonplaceholder.typicode.com/photos`;
+  // //   return fetch(url)
+  // //     .then( (res) => res.json() )
+  // //       .then( (resJson) => {
+  // //         this.setState({
+  // //           logosParceiros: resJson,
+  // //         });
+  // //         console.log('logosparceiros=',this.state.logosParceiros)
+  // //         console.log('logosparceiros1=',this.state.logosParceiros[1])
+  // //       }).catch((error) => { console.log(error); });
+  // // }
 
-  renderSeparator = () => {
-    return (
-      <View style={{ height:1, width:'100%', backgroundColor: '#119'}}/>
-    );
-  }
+  // requestParceiros = async () => {
+  //   const url = `https://jsonplaceholder.typicode.com/photos`;
+  //   try {
+  //     const response = await fetch(url);
+  //     const responseJson = await response.json();
+  //     this.setState({
+  //       logosParceiros: responseJson,
+  //     });
+  //     console.log('logosparceiros=', this.state.logosParceiros);
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // renderSeparator = () => {
+  //   return (
+  //     <View style={{ height:1, width:'100%', backgroundColor: '#119'}}/>
+  //   );
+  // }
 
   render() {
     return (
@@ -99,8 +97,8 @@ export default class Main extends Component {
           </View>
 
         </ScrollView> */}
-        <Text>Lista:</Text>
-        <FlatList
+        {/* <Text>Lista:</Text> */}
+        {/* <FlatList
           data={this.state.logosParceiros}
           keyExtractor={(parceiro, index) => index.toString()}
           renderItem={({parceiro}) => {
@@ -111,7 +109,7 @@ export default class Main extends Component {
           />
           }}
           ItemSeparatorComponent={this.renderSeparator}
-        />
+        /> */}
       </View>
     );
   }

@@ -14,6 +14,7 @@ import Parceiros from './src/screens/Parceiros';
 import Parceiro from './src/screens/Parceiro';
 
 import Atividades from './src/screens/Atividades';
+import Atividade from './src/screens/Atividade';
 
 import Profile from './src/screens/Profile';
 import Sobre from './src/screens/Sobre';
@@ -25,16 +26,41 @@ import MeusCuponsDescontos from './src/screens/MeusCuponsDescontos';
 
 
 const AtividadesNavigator = createStackNavigator({
-  TelaMain : { screen : Atividades},
+  TelaMain : { 
+    screen : Atividades,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  TelaAtividade : { 
+    screen : Atividade,
+  }
 });
 
+// unico jeito que consegui fazer o tab bar ficar invisivel...
+AtividadesNavigator.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {tabBarVisible = false}
+  return {tabBarVisible};
+};
+
 const ParceirosNavigator = createStackNavigator({
-  TelaMain : { screen : Parceiros },
+  TelaMain : { 
+    screen : Parceiros,
+    navigationOptions: {
+      header: null,
+    } 
+  },
   TelaParceiro : { screen : Parceiro },
 });
 
 const ProfileNavigator = createStackNavigator({
-  TelaMain : { screen : Profile },
+  TelaMain : { 
+    screen : Profile,
+    navigationOptions: {
+      header: null,
+    }
+  },
   TelaSobre : { screen : Sobre },
   TelaAjuda : { screen : Ajuda },
   TelaFeedback : { screen : Feedback},

@@ -49,7 +49,7 @@ export default class Main extends Component {
         });
 			},
 		  error => Alert.alert(error.message),
-			{ enableHighAccuracy: true, timeout: 5000 }
+			{ enableHighAccuracy: false, timeout: 50000 }
 		);
   };
   

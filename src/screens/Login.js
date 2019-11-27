@@ -16,7 +16,7 @@ import { CheckBox, Image, Icon } from 'react-native-elements';
 import Estilos from '../Estilos';
 import logo from '../imgs/logo.jpeg';
 import axios from 'axios';
-import api from '../api/api'
+import api from '../api/api';
 
 export default class Login extends React.Component {
   constructor(props) {

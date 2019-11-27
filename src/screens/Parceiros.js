@@ -34,7 +34,7 @@ export default class Main extends Component {
   constructor() {
     super();
     this.state = {
-      logosParceiros: [],
+      //logosParceiros: [],
     };
   }
 
@@ -79,6 +79,26 @@ export default class Main extends Component {
   render() {
     return (
       <View style={{ flex:1 }}>
+        <View style={{ height: 100, margin: 10 }}>
+          <ScrollView horizontal style={{ padding: 10}}>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f92', width: 50, height: 50}}></View>
+            <View style={{ backgroundColor: '#f99', width: 50, height: 50}}></View>
+            
+          </ScrollView>
+        </View>
         {/* <ScrollView>
 
           <View style={Estilos.blocoParceiro}>

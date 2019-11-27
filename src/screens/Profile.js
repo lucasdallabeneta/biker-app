@@ -11,6 +11,8 @@ import {
   StatusBar,
 } from 'react-native';
 import Estilos from '../Estilos';
+import api from '../api/api';
+import axios from 'axios';
 
 export default class Main extends React.Component {
 
@@ -18,16 +20,48 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       name: '',
+      creditos: 0,
+      cpf: 222,
     };
   }
 
   componentDidMount() {
+
     AsyncStorage.getItem('@auth:name').then((name) => {
       this.setState({
         name: name
       });
     });
+
+    AsyncStorage.getItem('@auth:cpf').then((cpf) => {
+      this.setState({
+        cpf: cpf
+      });
+    });
+
+    this.handleCreditos()
+
   }
+
+  handleCreditos = async () => {
+      try {
+        const response = await api.post('/users/creditos', {
+          cpf: this.state.cpf,
+        });
+        //Alert.alert('Resposta do servidor:',`cpf=${response.data.cpf} name=${response.data.name} token=${response.data.token}`);
+        const { creditos } = response.data; 
+
+        //axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
+        //Alert.alert("creditos:",response.data)
+          
+        // await AsyncStorage.multiSet([
+        //   ['@auth:creditos', creditos]
+        // ]);
+
+      } catch (err) {
+        Alert.alert('[logs]',''+err);
+      }
+  };
 
   render() {
     return (
@@ -37,19 +71,20 @@ export default class Main extends React.Component {
         <View style={Estilos.PerfilContainerInfo}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}> 
             <Image 
-              source={require('../imgs/horse.png')}
-              style={{ resizeMode: 'contain', }}
+              source={require('../imgs/taco.png')}
+              style={{ resizeMode: 'contain', marginLeft: 20 }}
             />
           </View>
           <View style={{flex: 2, justifyContent: 'center'}}> 
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFF' }}>  bem vindo {this.state.name} </Text>
+            <Text testID="name" style={{ fontSize: 20, fontWeight: 'bold', color: '#FFF' }}>  bem vindo {this.state.name} </Text>
+            <Text style={{ fontSize: 20, color: '#FFF' }}>  CPF: {this.state.cpf} </Text>
             <Text style={{ fontSize: 20, color: '#FFF' }}>  Criador do BikerApp </Text>
           </View>
         </View>
 
         <View style={Estilos.PerfilContainerCreditos}>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}> 
-            <Text style={{ fontSize: 20, color: '#FFF' }}>  creditos diponiveis: -1 </Text>
+            <Text style={{ fontSize: 20, color: '#FFF' }}>  creditos diponiveis: {this.state.creditos} </Text>
           </View>
         </View>
 
